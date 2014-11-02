@@ -45,9 +45,11 @@ class Publisher
         $this->commands[] = sprintf('mv %s %s/web-' . time(), $this->getWebDirectory(), $this->getTrashDirectory());
 
         // Initialize web root directory
-        $this->commands[] = 'git clone ' . $this->getGitRemote() . ' ' . $this->getWebDirectory();
-        $this->commands[] = sprintf('cd %s; git checkout gh-pages', $this->getWebDirectory());
-        $this->commands[] = sprintf('cd %s; git config --local core.autocrlf false', $this->getWebDirectory());
+        if (!is_dir($this->getWebDirectory())) {
+            $this->commands[] = 'git clone ' . $this->getGitRemote() . ' ' . $this->getWebDirectory();
+            $this->commands[] = sprintf('cd %s; git checkout gh-pages', $this->getWebDirectory());
+            $this->commands[] = sprintf('cd %s; git config --local core.autocrlf false', $this->getWebDirectory());
+        }
 
         return $this;
     }
@@ -65,6 +67,7 @@ class Publisher
 
         // Generate for English
         $this->commands[] = sprintf('cd %s/en; sculpin generate --url=/en --env=prod', $this->getSourceDirectory());
+        $this->commands[] = sprintf('rm -rf %s/en', $this->getWebDirectory());
         $this->commands[] = sprintf('mv %s/en/output_prod %s/en', $this->getSourceDirectory(), $this->getWebDirectory());
 
         return $this;
@@ -81,7 +84,7 @@ class Publisher
         // Generate for English
         $this->commands[] = sprintf('cd %s; git add .', $this->getWebDirectory());
         $this->commands[] = sprintf('cd %s; git commit -am "Build %s"', $this->getWebDirectory(), time());
-        $this->commands[] = sprintf('cd %s; git push origin gh-pages', $this->getWebDirectory(), time());
+        #$this->commands[] = sprintf('cd %s; git push origin gh-pages', $this->getWebDirectory(), time());
         $this->execute($this->commands);
     }
 
