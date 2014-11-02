@@ -5,7 +5,7 @@ $publisher = new Publisher($argv);
 
 $publisher->initialize()
     ->generate()
-    ->publish();
+    ->deploy();
 
 /**
  * Class Publisher
@@ -41,14 +41,13 @@ class Publisher
      */
     public function initialize()
     {
-        $webDirectory = $this->getWebDirectory();
+        // Remove old repository to avoid confusion
+        $this->commands[] = sprintf('mv %s %s/web-' . time(), $this->getWebDirectory(), $this->getTrashDirectory());
 
         // Initialize web root directory
-        if (!is_dir($webDirectory)) {
-
-            $this->commands[] = 'git clone ' . $this->getGitRemote() . ' ' . $webDirectory;
-            $this->commands[] = sprintf('cd %s; git checkout gh-pages', $webDirectory);
-        }
+        $this->commands[] = 'git clone ' . $this->getGitRemote() . ' ' . $this->getWebDirectory();
+        $this->commands[] = sprintf('cd %s; git checkout gh-pages', $this->getWebDirectory());
+        $this->commands[] = sprintf('cd %s; git config --local core.autocrlf false', $this->getWebDirectory());
 
         return $this;
     }
@@ -61,7 +60,7 @@ class Publisher
     public function generate()
     {
         // Create redirection to "en".
-        // @todo add language detection?
+        // @todo add language detection in index.html? Let see...
         $this->createRedirectionPage();
 
         // Generate for English
@@ -76,8 +75,13 @@ class Publisher
      *
      * @return void
      */
-    public function publish()
+    public function deploy()
     {
+
+        // Generate for English
+        $this->commands[] = sprintf('cd %s; git add .', $this->getWebDirectory());
+        $this->commands[] = sprintf('cd %s; git commit -am "Build %s"', $this->getWebDirectory(), time());
+        $this->commands[] = sprintf('cd %s; git push origin gh-pages', $this->getWebDirectory(), time());
         $this->execute($this->commands);
     }
 
@@ -180,5 +184,15 @@ EOF;
     protected function isDryRun()
     {
         return $this->dryRun;
+    }
+
+    /**
+     * Tells whether the dry run flag is found.
+     *
+     * @return bool
+     */
+    protected function getTrashDirectory()
+    {
+        return '~/.Trash';
     }
 }

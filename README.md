@@ -27,3 +27,4 @@ Publish
 Publish to production server
 
 	./publish.php
+
