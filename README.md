@@ -28,3 +28,7 @@ Publish to production server
 
 	./publish.php
 
+Additionally, you can add a ``--dry`` flag to see the command before real execution.
+
+	./publish.php --dry
+
