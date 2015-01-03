@@ -3,7 +3,7 @@
     <title><![CDATA[&lt;fabarea/&gt;]]></title>
     <link href="/fr/atom.xml" rel="self"/>
     <link href="/fr/"/>
-    <updated>2015-01-03T11:06:37+01:00</updated>
+    <updated>2015-01-03T11:55:33+01:00</updated>
     <id>/fr/</id>
         <generator uri="http://sculpin.io/">Sculpin</generator>
             <entry>
@@ -21,15 +21,15 @@
 
 <p>Ouverture du paneau des outils:</p>
 
-<p><img src="images/2015-01-03/2015-01-03_1025.png" alt="" /></p>
+<p><img src="/images/2015-01-03/2015-01-03_1025.png" alt="" /></p>
 
 <p>Sélection de l'outil:</p>
 
-<p><img src="images/2015-01-03/2015-01-03_1030.png" alt="" /></p>
+<p><img src="/images/2015-01-03/2015-01-03_1030.png" alt="" /></p>
 
 <p>Sélection des doublons:</p>
 
-<p><img src="images/2015-01-03/2015-01-03_1031.png" alt="" /></p>
+<p><img src="/images/2015-01-03/2015-01-03_1031.png" alt="" /></p>
 
 <h3>Installation</h3>
 
@@ -48,7 +48,7 @@ git clone git://git.typo3.org/TYPO3CMS/Extensions/media.git
 
 <p>Cette fonctionnalité a été sponsorisé par <a href="http://www.visol.ch/">Visol</a> que je remercie chaleureusement.</p>
 
-<p>Cet article <a href="fr/blog/2015/01/03/media-tool">est disponible</a> en anglais également.</p>
+<p>Cet article <a href="/fr/blog/2015/01/03/media-tool">est disponible</a> en anglais également.</p>
 ]]></content>
         </entry>
             <entry>
