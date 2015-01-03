@@ -42,7 +42,7 @@ class Publisher
     public function initialize()
     {
         // Remove old repository to avoid confusion
-        $this->commands[] = sprintf('mv %s %s/web-' . time(), $this->getWebDirectory(), $this->getTrashDirectory());
+        #$this->commands[] = sprintf('mv %s %s/web-' . time(), $this->getWebDirectory(), $this->getTrashDirectory());
 
         // Initialize web root directory
         if (!is_dir($this->getWebDirectory())) {
@@ -66,9 +66,32 @@ class Publisher
         $this->createRedirectionPage();
 
         // Generate for English
-        $this->commands[] = sprintf('cd %s/en; sculpin generate --url=/en --env=prod', $this->getSourceDirectory());
-        $this->commands[] = sprintf('rm -rf %s/en', $this->getWebDirectory());
-        $this->commands[] = sprintf('mv %s/en/output_prod %s/en', $this->getSourceDirectory(), $this->getWebDirectory());
+        foreach (array('en', 'fr') as $language) {
+
+            // Generate with production flag
+            $this->commands[] = sprintf(
+                'cd %s/%s; sculpin generate --url=/%s --env=prod',
+                $this->getSourceDirectory(),
+                $language,
+                $language
+            );
+
+            // Delete old source
+            $this->commands[] = sprintf(
+                'rm -rf %s/%s',
+                $this->getWebDirectory(),
+                $language
+            );
+
+            // Move source
+            $this->commands[] = sprintf(
+                'mv %s/%s/output_prod %s/%s',
+                $this->getSourceDirectory(),
+                $language,
+                $this->getWebDirectory(),
+                $language);
+        }
+
 
         return $this;
     }
@@ -84,7 +107,9 @@ class Publisher
         // Generate for English
         $this->commands[] = sprintf('cd %s; git add .', $this->getWebDirectory());
         $this->commands[] = sprintf('cd %s; git commit -am "Build %s"', $this->getWebDirectory(), time());
-        #$this->commands[] = sprintf('cd %s; git push origin gh-pages', $this->getWebDirectory(), time());
+        $this->commands[] = sprintf('cd %s; git push origin gh-pages', $this->getWebDirectory(), time());
+        $this->commands[] = '';
+        $this->commands[] = 'echo "open http://fabarea.tk"';
         $this->execute($this->commands);
     }
 
