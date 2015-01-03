@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Tags &mdash; &lt;fabarea/&gt; &mdash; To Get You Started</title>
+        <title>Media extension - identify duplicate files! &mdash; &lt;fabarea/&gt; &mdash; To Get You Started</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="/en/components/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -43,13 +43,62 @@
         <div class="mainContent container">
             <div class="row-fluid">
                 <div class="span8">
-                    <h2>Tags</h2>
+                        <article>
+        <header>
+            <h2>Media extension - identify duplicate files! <small>post</small></h2>
+        </header>
+        <div>
+            <p>I am developing for some time already an <a href="https://forge.typo3.org/projects/extension-media/">extension</a> for Media management for <a href="http://demo.typo3.org/">TYPO3 CMS</a>, with a focus on advanced management of metadata and filtering.</p>
 
-<div>
-<a href="/en/blog/tags/media">media</a>
-<a href="/en/blog/tags/typo3%20cms">typo3 cms</a>
-<a href="/en/blog/tags/sculpin">sculpin</a>
-</div>                </div>
+<p>I just added a new tool that allows to detect duplicate files. This allows for example to identify a file that has been inadvertently uploaded several times by a user and which is double in the storage. The tool produces a list that displays these duplicates, then you can select the files to be deleted.</p>
+
+<p>This addition complements the list of existing tools. There was the possibility already identify missing or duplicate files to records in the database of businesses.</p>
+
+<h3>With pictures</h3>
+
+<p>Open tools panel:</p>
+
+<p><img src="images/2015-01-03/2015-01-03_1025.png" alt="" /></p>
+
+<p>Open the tool:</p>
+
+<p><img src="images/2015-01-03/2015-01-03_1030.png" alt="" /></p>
+
+<p>Select duplicate files:</p>
+
+<p><img src="images/2015-01-03/2015-01-03_1031.png" alt="" /></p>
+
+<h3>Installation</h3>
+
+<p>To test this feature, you must fetch the source from the <a href="https://git.typo3.org/TYPO3CMS/Extensions/media.git">Git repository</a>, before it get published on the <a href="http://typo3.org/extensions/repository/">TER</a>. You must also update the source of <a href="https://forge.typo3.org/projects/extension-vidi/">Vidi</a> which is the underlying engine of Media.</p>
+
+<pre><code># Clone du master de Vidi
+cd typo3conf/ext
+git clone git://git.typo3.org/TYPO3CMS/Extensions/vidi.git
+
+# Clone du master de Media
+cd typo3conf/ext
+git clone git://git.typo3.org/TYPO3CMS/Extensions/media.git
+</code></pre>
+
+<h3>Sponsor</h3>
+
+<p>This feature was sponsored by <a href="http://www.visol.ch/">Visol</a> which I warmly thank you.</p>
+
+<p>This article <a href="fr/blog/2015/01/03/media-tool">is available</a> as French also.</p>
+
+        </div>
+                            <p class="tags">
+            Tags:
+                        <a href="/en/blog/tags/media">media</a>,                         <a href="/en/blog/tags/typo3%20cms">typo3 cms</a>                        </p>
+        
+                    <nav class="article">
+                <ul>
+                                                                <li>Previous: <a class="previous" href="/en/blog/2014/10/02/fabarea" title="Fab Area!"><span class="title">Fab Area!</span></a></li>
+                                    </ul>
+            </nav>
+            </article>
+                </div>
                 <div class="span4 sidebar">
                     <!--<div class="well">-->
                         <!--<h4>&lt;fabarea/&gt; <small>To Get You Started</small></h4>-->

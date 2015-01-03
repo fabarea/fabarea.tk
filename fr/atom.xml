@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <title><![CDATA[&lt;fabarea/&gt;]]></title>
+    <link href="/fr/atom.xml" rel="self"/>
+    <link href="/fr/"/>
+    <updated>2015-01-03T11:06:37+01:00</updated>
+    <id>/fr/</id>
+        <generator uri="http://sculpin.io/">Sculpin</generator>
+            <entry>
+            <title type="html"><![CDATA[Media extension - identifier les fichiers doublons!]]></title>
+            <link href="/fr/blog/2015/01/03/media-tool"/>
+            <updated>2015-01-03T00:00:00+01:00</updated>
+            <id>/fr/blog/2015/01/03/media-tool</id>
+            <content type="html"><![CDATA[<p>Je développe déjà depuis quelques temps une <a href="https://forge.typo3.org/projects/extension-media/">extension</a> pour la gestion des média pour <a href="http://demo.typo3.org/">TYPO3 CMS</a> avec comme point fort l'ergonomie et le traitement avancés des metadata.</p>
+
+<p>Je viens d'ajouter un nouvel outil qui permet la détection de fichiers doublons. Cela permet par exemple d'identifier un même fichier qui aurait été uploadé par inadvertance plusieurs fois par un utilisateur et qui serait à double dans le storage. L'outils produit une liste qui affiche ces doublons, ensuite, il est possible de sélectionner les fichiers qui sont à supprimer.</p>
+
+<p>Cet ajout vient compléter la liste des outils existants. Il y avait la possibilité déjà de repérer les fichiers manquants ou des enregistrements à double dans la base de donné.</p>
+
+<h3>En images</h3>
+
+<p>Ouverture du paneau des outils:</p>
+
+<p><img src="images/2015-01-03/2015-01-03_1025.png" alt="" /></p>
+
+<p>Sélection de l'outil:</p>
+
+<p><img src="images/2015-01-03/2015-01-03_1030.png" alt="" /></p>
+
+<p>Sélection des doublons:</p>
+
+<p><img src="images/2015-01-03/2015-01-03_1031.png" alt="" /></p>
+
+<h3>Installation</h3>
+
+<p>Pour tester cette fonctionnalité, il faut récupérer les sources depuis le <a href="https://git.typo3.org/TYPO3CMS/Extensions/media.git">dépôt Git</a>, en attendant sa publication sur le <a href="http://typo3.org/extensions/repository/">TER</a>, ainsi que mettre à jour de l'extension <a href="https://forge.typo3.org/projects/extension-vidi/">Vidi</a> qui est le moteur sous-jacent à Media.</p>
+
+<pre><code># Clone du master de Vidi
+cd typo3conf/ext
+git clone git://git.typo3.org/TYPO3CMS/Extensions/vidi.git
+
+# Clone du master de Media
+cd typo3conf/ext
+git clone git://git.typo3.org/TYPO3CMS/Extensions/media.git
+</code></pre>
+
+<h3>Sponsor</h3>
+
+<p>Cette fonctionnalité a été sponsorisé par <a href="http://www.visol.ch/">Visol</a> que je remercie chaleureusement.</p>
+
+<p>Cet article <a href="fr/blog/2015/01/03/media-tool">est disponible</a> en anglais également.</p>
+]]></content>
+        </entry>
+            <entry>
+            <title type="html"><![CDATA[Fab Area!]]></title>
+            <link href="/fr/blog/2014/10/02/fabarea"/>
+            <updated>2014-10-02T00:00:00+02:00</updated>
+            <id>/fr/blog/2014/10/02/fabarea</id>
+            <content type="html"><![CDATA[<p>Prems!</p>
+
+<p>De quoi va parler ce blog? Principalement de choses techniques liés à mes projets.</p>
+
+<p>Je travaille dans mon quotidien avec des "produits" de l'écosystème <a href="http://typo3.org/">TYPO3</a> avec <a href="http://composer.typo3.org/">CMS</a> mais pas uniquement! Je maintiens quelques extensions que j'ai publiés pour cet environnement.</p>
+
+<p>Ce blog est propulsé par <a href="https://sculpin.io/">Sculpin</a>, qui est un générateur de site statique. Je suis tombé sur Scuplin alors que j'ai évalué plusieurs solutions de générateur de site. L'idée et d'écrire le contenu dans un fichier MarkDown qui est ensuite converti en HTML.</p>
+
+<p>Sculpin est écrit en PHP et repose sur les fondations de<a href="http://symfony.com/">Symfony</a>.</p>
+
+<p>Ce qui est de produits est efficace, économique et bien adapté pour des sites de petites structures. Une fois les pages statiques générées, il n'y a plus de maintenance nécessaire. En bonus, il est possible d'héberger gratuitement ses pages sur différents plate-formes.</p>
+
+<p>Pour un démarrage rapide, j'ai utilisé ce <a href="https://github.com/sculpin/sculpin-blog-skeleton.git">dépôt Git</a> qui fournit un squelette de blog.</p>
+]]></content>
+        </entry>
+    </feed>
