@@ -17,15 +17,15 @@ This addition complements the list of existing tools. There was the possibility 
 
 Open tools panel:
 
-![](/images/2015-01-03/2015-01-03_1025.png)
+![](images/2015-01-03/2015-01-03_1025.png)
 
 Open the tool:
 
-![](/images/2015-01-03/2015-01-03_1030.png)
+![](images/2015-01-03/2015-01-03_1030.png)
 
 Select duplicate files:
 
-![](/images/2015-01-03/2015-01-03_1031.png)
+![](images/2015-01-03/2015-01-03_1031.png)
 
 ### Installation
 

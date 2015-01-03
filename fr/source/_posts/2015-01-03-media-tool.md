@@ -16,16 +16,16 @@ Cet ajout vient compléter la liste des outils existants. Il y avait la possibil
 
 Ouverture du paneau des outils:
 
-![](/images/2015-01-03/2015-01-03_1025.png)
+![](images/2015-01-03/2015-01-03_1025.png)
 
 
 Sélection de l'outil:
 
-![](/images/2015-01-03/2015-01-03_1030.png)
+![](images/2015-01-03/2015-01-03_1030.png)
 
 Sélection des doublons:
 
-![](/images/2015-01-03/2015-01-03_1031.png)
+![](images/2015-01-03/2015-01-03_1031.png)
 
 ### Installation
 
