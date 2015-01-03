@@ -93,6 +93,15 @@ class Publisher
         }
 
 
+        // Move source
+        // @todo improve me!! only for "en", should be global somehow.
+        $this->commands[] = sprintf(
+            'mv %s/en/images %s/images',
+            $this->getWebDirectory(),
+            $this->getWebDirectory()
+            );
+
+
         return $this;
     }
 
