@@ -16,16 +16,16 @@ Cet ajout vient compléter la liste des outils existants. Il y avait la possibil
 
 Ouverture du paneau des outils:
 
-![](images/2015-01-03/2015-01-03_1025.png)
+![](/images/2015-01-03/2015-01-03_1025.png)
 
 
 Sélection de l'outil:
 
-![](images/2015-01-03/2015-01-03_1030.png)
+![](/images/2015-01-03/2015-01-03_1030.png)
 
 Sélection des doublons:
 
-![](images/2015-01-03/2015-01-03_1031.png)
+![](/images/2015-01-03/2015-01-03_1031.png)
 
 ### Installation
 
@@ -44,7 +44,7 @@ Pour tester cette fonctionnalité, il faut récupérer les sources depuis le [d�
 
 Cette fonctionnalité a été sponsorisé par [Visol][visol] que je remercie chaleureusement.
 
-Cet article [est disponible](fr/blog/2015/01/03/media-tool) en anglais également.
+Cet article [est disponible](/fr/blog/2015/01/03/media-tool) en anglais également.
 
 [media]: https://forge.typo3.org/projects/extension-media/
 [vidi]: https://forge.typo3.org/projects/extension-vidi/

@@ -17,15 +17,15 @@ This addition complements the list of existing tools. There was the possibility 
 
 Open tools panel:
 
-![](images/2015-01-03/2015-01-03_1025.png)
+![](/images/2015-01-03/2015-01-03_1025.png)
 
 Open the tool:
 
-![](images/2015-01-03/2015-01-03_1030.png)
+![](/images/2015-01-03/2015-01-03_1030.png)
 
 Select duplicate files:
 
-![](images/2015-01-03/2015-01-03_1031.png)
+![](/images/2015-01-03/2015-01-03_1031.png)
 
 ### Installation
 
@@ -44,7 +44,7 @@ To test this feature, you must fetch the source from the [Git repository][git-me
 
 This feature was sponsored by [Visol][visol] which I warmly thank you.
 
-This article [is available](fr/blog/2015/01/03/media-tool) as French also.
+This article [is available](/fr/blog/2015/01/03/media-tool) as French also.
 
 
 [media]: https://forge.typo3.org/projects/extension-media/
