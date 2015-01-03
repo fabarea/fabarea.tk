@@ -108,7 +108,7 @@ class Publisher
         $this->commands[] = sprintf('cd %s; git add .', $this->getWebDirectory());
         $this->commands[] = sprintf('cd %s; git commit -am "Build %s"', $this->getWebDirectory(), time());
         $this->commands[] = sprintf('cd %s; git push origin gh-pages', $this->getWebDirectory(), time());
-        $this->commands[] = '';
+        $this->commands[] = 'echo "\n"';
         $this->commands[] = 'echo "open http://fabarea.tk"';
         $this->execute($this->commands);
     }
