@@ -173,7 +173,12 @@ class Publisher
 
         $result = array();
         foreach ($commands as $command) {
-            exec($command, $result);
+            if (preg_match('/^echo/', $command)) {
+                // Command "system" must be used if command start with "echo".
+                system($command);
+            } else {
+                exec($command, $result);
+            }
         }
         return $result;
     }
