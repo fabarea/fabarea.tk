@@ -1,55 +1,31 @@
 ---
-title: Media extension - identify duplicate files!
+title: Using the migration file
 tags:
-    - media
-    - typo3 cms
+    - typo3
 ---
 
+Today I decided to migrate the namespace of this extension
 
-I am developing for some time already an [extension][media] for Media management for [TYPO3 CMS][cms], with a focus on advanced management of metadata and filtering.
-
-I just added a new tool that allows to detect duplicate files. This allows for example to identify a file that has been inadvertently uploaded several times by a user and which is double in the storage. The tool produces a list that displays these duplicates, then you can select the files to be deleted.
-
-This addition complements the list of existing tools. There was the possibility already identify missing or duplicate files to records in the database of businesses.
+This is quite simple actually.
 
 
-### With pictures
+Welcome to my blog which looks more as an experiment for the moment.
 
-Open tools panel:
+What is going to be here? Mainly technical stuff related to my on-going projects.
 
-![](/images/2015-01-03/2015-01-03_1025.png)
+I work in my daily work with products from the [TYPO3][1] ecosystem mainly with [CMS][2] but not only!
+I am maintaining a couple of extensions there.
 
-Open the tool:
+This blog is powered by [Sculpin][3], a flexible site generator. I stumbled upon Sculpin while looking around for different site generator system.
+Sculpin is written in PHP and has a nice architecture on the top of [Symfony][4].
+This kind of product looks quite appealing for economic, small-size website. Once the site is generated there
+is no maintenance required anymore. As a bonus, it can be freely hosted on various places!
 
-![](/images/2015-01-03/2015-01-03_1030.png)
-
-Select duplicate files:
-
-![](/images/2015-01-03/2015-01-03_1031.png)
-
-### Installation
-
-To test this feature, you must fetch the source from the [Git repository][git-media], before it get published on the [TER][ter]. You must also update the source of [Vidi][vidi] which is the underlying engine of Media.
+For a quick start I have been using [this repository][5] which provides a straightforward structure to start bloging with Scuplin.
 
 
-    # Clone du master de Vidi
-    cd typo3conf/ext
-    git clone git://git.typo3.org/TYPO3CMS/Extensions/vidi.git
-
-    # Clone du master de Media
-    cd typo3conf/ext
-    git clone git://git.typo3.org/TYPO3CMS/Extensions/media.git
-
-### Sponsor
-
-This feature was sponsored by [Visol][visol] which I warmly thank you.
-
-This article [is available](/fr/blog/2015/01/03/media-tool) as French also.
-
-
-[media]: https://forge.typo3.org/projects/extension-media/
-[vidi]: https://forge.typo3.org/projects/extension-vidi/
-[cms]:http://demo.typo3.org/
-[ter]:http://typo3.org/extensions/repository/
-[git-media]: https://git.typo3.org/TYPO3CMS/Extensions/media.git
-[visol]:http://www.visol.ch/
+[1]:http://typo3.org/
+[2]:http://composer.typo3.org/
+[3]:https://sculpin.io/
+[4]:http://symfony.com/
+[5]:https://github.com/sculpin/sculpin-blog-skeleton.git
