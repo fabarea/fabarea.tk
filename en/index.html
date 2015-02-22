@@ -45,59 +45,100 @@
                 <div class="span8">
                         <article>
         <header>
-            <h2><a href="/en/blog/2015/01/03/media-tool">Media extension - identify duplicate files!</a></h2>
+            <h2><a href="/en/blog/2015/02/20/automatic-ter-release/">Automatic TER release from Github</a></h2>
         </header>
         <div>
-            <p>I am developing for some time already an <a href="https://forge.typo3.org/projects/extension-media/">extension</a> for Media management for <a href="http://demo.typo3.org/">TYPO3 CMS</a>, with a focus on advanced management of metadata and filtering.</p>
+            <p>As the maintainer of <a href="/en/blog/2015/02/10/github-migration/">several extensions</a> for TYPO3 CMS, I have always found the release process to the <a href="http://typo3.org/extensions/repository/">TER</a> a little bit tedious. In fact, the operation is more complicated than it seems. We must be very carful about every detail: Git tags, commit message, update the correct version number, etc... To help in this task, I have a checklist that I follow step by step. But still! And if all goes well, the procedure takes arourd 10 to 15 minutes per extension.</p>
 
-<p>I just added a new tool that allows to detect duplicate files. This allows for example to identify a file that has been inadvertently uploaded several times by a user and which is double in the storage. The tool produces a list that displays these duplicates, then you can select the files to be deleted.</p>
+<p>I had on the radar several attempts to automate the upload of the TER via Webhooks available in Github. There was, among others, the approach of <a href="http://blog.kay-strobach.de/">Kay Strobach</a> with this <a href="https://github.com/kaystrobach/TYPO3TerHook/">proof of concept</a>.</p>
 
-<p>This addition complements the list of existing tools. There was the possibility already identify missing or duplicate files to records in the database of businesses.</p>
+<p>The underlying idea was to trigger the upload via the creation of a Git tag. Having discussed the matter with <a href="https://plus.google.com/+AdrienCrivelli/posts">my colleague Adrien</a>, we followed the approach explained in detail in <a href="https://github.com/Ecodev/fluidtypo3-gizzle.">this article</a> written by <a href="https://twitter.com/namelesscoder">Claus Due</a>. The verbosity of the article can let thing about something complexd to set up. It is not so! The implementation can be summarized in a few steps.</p>
 
-<h3>With pictures</h3>
+<h3>Preparatory tasks</h3>
 
-<p>Open tools panel:</p>
+<ul>
+<li>Create a subdomain, eg http://release.example.com</li>
+<li>Clone extension <a href="https://github.com/Ecodev/fluidtypo3-gizzle">https://github.com/Ecodev/fluidtypo3-gizzle</a>, the "web" folder to be the root of the document root.</li>
+<li>Add a webhook for the project on GitHub
 
-<p><img src="/images/2015-01-03/2015-01-03_1025.png" alt="" /></p>
+<ul>
+<li>URL: http://release.example.com/?settings=settings/ExtensionRelease.yml</li>
+<li>Secret: 12356</li>
+</ul></li>
+<li>Transfer the key extension to a member "release" on <a href="typo3.org">typo3.org</a>. This step is optional but recommended.</li>
+</ul>
 
-<p>Open the tool:</p>
+<h3>Release task</h3>
 
-<p><img src="/images/2015-01-03/2015-01-03_1030.png" alt="" /></p>
+<ul>
+<li>Update the version number in the file <code>ext_emconf.php</code> and <code>composer.json</code>.</li>
+<li>Create a tag and push this tag with the command <code>git push --tags</code>, the extension is uploaded to TER with a generic message that points to the log on Github. Very convenient!</li>
+</ul>
 
-<p>Select duplicate files:</p>
+<h3>A few screenshots</h3>
 
-<p><img src="/images/2015-01-03/2015-01-03_1031.png" alt="" /></p>
+<p><img src="/images/2015-02-20/2015-02-20_2202.png" alt="" /></p>
 
-<h3>Installation</h3>
+<p>The setup of the Webhook</p>
 
-<p>To test this feature, you must fetch the source from the <a href="https://git.typo3.org/TYPO3CMS/Extensions/media.git">Git repository</a>, before it get published on the <a href="http://typo3.org/extensions/repository/">TER</a>. You must also update the source of <a href="https://forge.typo3.org/projects/extension-vidi/">Vidi</a> which is the underlying engine of Media.</p>
+<hr />
 
-<pre><code># Clone du master de Vidi
-cd typo3conf/ext
-git clone git://git.typo3.org/TYPO3CMS/Extensions/vidi.git
+<p><img src="/images/2015-02-20/2015-02-20_2203.png" alt="" /></p>
 
-# Clone du master de Media
-cd typo3conf/ext
-git clone git://git.typo3.org/TYPO3CMS/Extensions/media.git
-</code></pre>
+<p>Analysis of paylod to verify what has been sent to Webhook.</p>
 
-<h3>Sponsor</h3>
+<hr />
 
-<p>This feature was sponsored by <a href="http://www.visol.ch/">Visol</a> which I warmly thank you.</p>
+<p><img src="/images/2015-02-20/2015-02-20_2204.png" alt="" /></p>
 
-<p>This article <a href="/fr/blog/2015/01/03/media-tool">is available</a> as French also.</p>
+<p>The return of the Webhook actually corresponding to the message sent by the TER.</p>
+
+<p>This article is <a href="/fr/blog/2015/02/20/automatic-ter-release">available</a> in French also.</p>
 
         </div>
                     <p class="tags">
             Tags:
-                        <a href="/en/blog/tags/media">media</a>,                         <a href="/en/blog/tags/typo3%20cms">typo3 cms</a>                        </p>
+                        <a href="/en/blog/tags/ter">ter</a>,                         <a href="/en/blog/tags/github">github</a>                        </p>
             </article>
     <article>
         <header>
-            <h2><a href="/en/blog/2014/10/02/fabarea">Fab Area!</a></h2>
+            <h2><a href="/en/blog/2015/02/10/github-migration/">Moving my extensions to Github</a></h2>
         </header>
         <div>
-            <p>Welcome to my blog which looks more as an experiment for the moment.</p>
+            <p>The <a href="https://forge.typo3.org/">TYPO3 Forge</a> is an interesting place that groups together a set of extensions and web resources. Unfortunately, the platform has negotiated the transition to Git with delay and many projects have moved to Github , Bitbucket and others. Added to this, the difficulty of <a href="https://code.google.com/p/gerrit/">Gerrit</a> which is a tool pretty tricky to get started with.</p>
+
+<p>To facilitate contributions on my projects, I decided to move my extensions to Github for pragmatic reasons.</p>
+
+<ul>
+<li><a href="https://github.com/fabarea/context_hints">context_hints</a></li>
+<li><a href="https://github.com/fabarea/media">media</a></li>
+<li><a href="https://github.com/fabarea/vidi">vidi</a></li>
+<li><a href="https://github.com/fabarea/vidi_starter">vidi_starter</a></li>
+<li><a href="https://github.com/fabarea/vidi_frontend">vidi_frontend</a></li>
+<li><a href="https://github.com/fabarea/quick_form">quick_form</a></li>
+<li><a href="https://github.com/fabarea/messenger">messenger</a></li>
+<li><a href="https://github.com/fabarea/rss_display">rss_display</a></li>
+<li><a href="https://github.com/fabarea/metadata">metadata</a></li>
+<li><a href="https://github.com/fabarea/media_upload">media_upload</a></li>
+</ul>
+
+<p>This article <a href="/fr/blog/2015/02/10/github-migration">is available</a> in French as well.</p>
+
+        </div>
+                    <p class="tags">
+            Tags:
+                        <a href="/en/blog/tags/github">github</a>                        </p>
+            </article>
+    <article>
+        <header>
+            <h2><a href="/en/blog/2015/01/03/media-tool/">Using the migration file</a></h2>
+        </header>
+        <div>
+            <p>Today I decided to migrate the namespace of this extension</p>
+
+<p>This is quite simple actually.</p>
+
+<p>Welcome to my blog which looks more as an experiment for the moment.</p>
 
 <p>What is going to be here? Mainly technical stuff related to my on-going projects.</p>
 
@@ -114,8 +155,12 @@ is no maintenance required anymore. As a bonus, it can be freely hosted on vario
         </div>
                     <p class="tags">
             Tags:
-                        <a href="/en/blog/tags/sculpin">sculpin</a>                        </p>
+                        <a href="/en/blog/tags/typo3">typo3</a>                        </p>
             </article>
+    <nav>
+        <br />
+        <a href="/en/page/2/">Older Posts</a><br />
+    </nav>
                 </div>
                 <div class="span4 sidebar">
                     <!--<div class="well">-->

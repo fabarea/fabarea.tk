@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Using the migration file &mdash; &lt;fabarea/&gt; &mdash; To Get You Started</title>
+        <title>Automatic TER release from Github &mdash; &lt;fabarea/&gt; &mdash; To Get You Started</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="/en/components/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -45,36 +45,64 @@
                 <div class="span8">
                         <article>
         <header>
-            <h2>Using the migration file <small>post</small></h2>
+            <h2>Automatic TER release from Github <small>post</small></h2>
         </header>
         <div>
-            <p>Today I decided to migrate the namespace of this extension</p>
+            <p>As the maintainer of <a href="/en/blog/2015/02/10/github-migration/">several extensions</a> for TYPO3 CMS, I have always found the release process to the <a href="http://typo3.org/extensions/repository/">TER</a> a little bit tedious. In fact, the operation is more complicated than it seems. We must be very carful about every detail: Git tags, commit message, update the correct version number, etc... To help in this task, I have a checklist that I follow step by step. But still! And if all goes well, the procedure takes arourd 10 to 15 minutes per extension.</p>
 
-<p>This is quite simple actually.</p>
+<p>I had on the radar several attempts to automate the upload of the TER via Webhooks available in Github. There was, among others, the approach of <a href="http://blog.kay-strobach.de/">Kay Strobach</a> with this <a href="https://github.com/kaystrobach/TYPO3TerHook/">proof of concept</a>.</p>
 
-<p>Welcome to my blog which looks more as an experiment for the moment.</p>
+<p>The underlying idea was to trigger the upload via the creation of a Git tag. Having discussed the matter with <a href="https://plus.google.com/+AdrienCrivelli/posts">my colleague Adrien</a>, we followed the approach explained in detail in <a href="https://github.com/Ecodev/fluidtypo3-gizzle.">this article</a> written by <a href="https://twitter.com/namelesscoder">Claus Due</a>. The verbosity of the article can let thing about something complexd to set up. It is not so! The implementation can be summarized in a few steps.</p>
 
-<p>What is going to be here? Mainly technical stuff related to my on-going projects.</p>
+<h3>Preparatory tasks</h3>
 
-<p>I work in my daily work with products from the <a href="http://typo3.org/">TYPO3</a> ecosystem mainly with <a href="http://composer.typo3.org/">CMS</a> but not only!
-I am maintaining a couple of extensions there.</p>
+<ul>
+<li>Create a subdomain, eg http://release.example.com</li>
+<li>Clone extension <a href="https://github.com/Ecodev/fluidtypo3-gizzle">https://github.com/Ecodev/fluidtypo3-gizzle</a>, the "web" folder to be the root of the document root.</li>
+<li>Add a webhook for the project on GitHub
 
-<p>This blog is powered by <a href="https://sculpin.io/">Sculpin</a>, a flexible site generator. I stumbled upon Sculpin while looking around for different site generator system.
-Sculpin is written in PHP and has a nice architecture on the top of <a href="http://symfony.com/">Symfony</a>.
-This kind of product looks quite appealing for economic, small-size website. Once the site is generated there
-is no maintenance required anymore. As a bonus, it can be freely hosted on various places!</p>
+<ul>
+<li>URL: http://release.example.com/?settings=settings/ExtensionRelease.yml</li>
+<li>Secret: 12356</li>
+</ul></li>
+<li>Transfer the key extension to a member "release" on <a href="typo3.org">typo3.org</a>. This step is optional but recommended.</li>
+</ul>
 
-<p>For a quick start I have been using <a href="https://github.com/sculpin/sculpin-blog-skeleton.git">this repository</a> which provides a straightforward structure to start bloging with Scuplin.</p>
+<h3>Release task</h3>
+
+<ul>
+<li>Update the version number in the file <code>ext_emconf.php</code> and <code>composer.json</code>.</li>
+<li>Create a tag and push this tag with the command <code>git push --tags</code>, the extension is uploaded to TER with a generic message that points to the log on Github. Very convenient!</li>
+</ul>
+
+<h3>A few screenshots</h3>
+
+<p><img src="/images/2015-02-20/2015-02-20_2202.png" alt="" /></p>
+
+<p>The setup of the Webhook</p>
+
+<hr />
+
+<p><img src="/images/2015-02-20/2015-02-20_2203.png" alt="" /></p>
+
+<p>Analysis of paylod to verify what has been sent to Webhook.</p>
+
+<hr />
+
+<p><img src="/images/2015-02-20/2015-02-20_2204.png" alt="" /></p>
+
+<p>The return of the Webhook actually corresponding to the message sent by the TER.</p>
+
+<p>This article is <a href="/fr/blog/2015/02/20/automatic-ter-release">available</a> in French also.</p>
 
         </div>
                             <p class="tags">
             Tags:
-                        <a href="/en/blog/tags/typo3">typo3</a>                        </p>
+                        <a href="/en/blog/tags/ter">ter</a>,                         <a href="/en/blog/tags/github">github</a>                        </p>
         
                     <nav class="article">
                 <ul>
-                                            <li>Next: <a class="next" href="/en/blog/2015/02/10/github-migration/" title="Moving my extensions to Github"><span class="title">Moving my extensions to Github</span></a></li>
-                                                                <li>Previous: <a class="previous" href="/en/blog/2014/10/02/fabarea/" title="Fab Area!"><span class="title">Fab Area!</span></a></li>
+                                                                <li>Previous: <a class="previous" href="/en/blog/2015/02/10/github-migration/" title="Moving my extensions to Github"><span class="title">Moving my extensions to Github</span></a></li>
                                     </ul>
             </nav>
             </article>
