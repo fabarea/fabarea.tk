@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Automatic TER release from Github &mdash; &lt;fabarea/&gt; &mdash; To Get You Started</title>
+        <title>Date format in PHP &mdash; &lt;fabarea/&gt; &mdash; To Get You Started</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="/en/components/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -45,65 +45,55 @@
                 <div class="span8">
                         <article>
         <header>
-            <h2>Automatic TER release from Github <small>post</small></h2>
+            <h2>Date format in PHP <small>post</small></h2>
         </header>
         <div>
-            <p>As the maintainer of <a href="/en/blog/2015/02/10/github-migration/">several extensions</a> for TYPO3 CMS, I have always found the release process to the <a href="http://typo3.org/extensions/repository/">TER</a> a little bit tedious. In fact, the operation is more complicated than it seems. We must be very carful about every detail: Git tags, commit message, update the correct version number, etc... To help in this task, I have a checklist that I follow step by step. But still! And if all goes well, the procedure takes arourd 10 to 15 minutes per extension.</p>
+            <p>Formatting dates in PHP is one of those things that is more twisted / complicated than it looks. The case is simple, we want to display a date, taking into account the linguistic context. Let us first look the <code>\DateTime ()</code></p>
 
-<p>I had on the radar several attempts to automate the upload of the TER via Webhooks available in Github. There was, among others, the approach of <a href="http://blog.kay-strobach.de/">Kay Strobach</a> with this <a href="https://github.com/kaystrobach/TYPO3TerHook/">proof of concept</a>.</p>
+<pre><code>$date = new \DateTime();
+print $date-&gt;format("d F Y"); // 20 Mar.2015
+</code></pre>
 
-<p>The underlying idea was to trigger the upload via the creation of a Git tag. Having discussed the matter with <a href="https://plus.google.com/+AdrienCrivelli/posts">my colleague Adrien</a>, we followed the approach explained in detail in <a href="https://github.com/Ecodev/fluidtypo3-gizzle.">this article</a> written by <a href="https://twitter.com/namelesscoder">Claus Due</a>. The verbosity of the article can let thing about something complexd to set up. It is not so! The implementation can be summarized in a few steps.</p>
+<p>Mmm ... It works but unfortunately for us, the return of <code>format</code> method is in English only.</p>
 
-<h3>Preparatory tasks</h3>
+<p>To translate a date, use the <code>strftime</code> function which will used the Locales of the system under the hood. However, the formatting syntax is different since it has percent "%" as symbol and different letters.</p>
 
-<ul>
-<li>Create a subdomain, eg http://release.example.com</li>
-<li>Clone extension <a href="https://github.com/Ecodev/fluidtypo3-gizzle">https://github.com/Ecodev/fluidtypo3-gizzle</a>, the "web" folder to be the root of the document root.</li>
-<li>Add a webhook for the project on GitHub
+<pre><code>setlocale(LC_TIME, "fr_FR");
+print strftime("%A %B %G"); // Vendredi mars 2015
+</code></pre>
 
-<ul>
-<li>URL: http://release.example.com/?settings=settings/ExtensionRelease.yml</li>
-<li>Secret: 12356</li>
-</ul></li>
-<li>Transfer the key extension to a member "release" on <a href="typo3.org">typo3.org</a>. This step is optional but recommended.</li>
-</ul>
+<p>By combining the object approach and the <code>strftime</code> function, this provides a more elegant solution.</p>
 
-<h3>Release task</h3>
+<pre><code>setlocale(LC_TIME, "fr_FR");
+$date = new \DateTime();
+print strftime("%A %B %G", $date-&gt;getTimestamp());
+// Vendredi mars 2015
+</code></pre>
 
-<ul>
-<li>Update the version number in the file <code>ext_emconf.php</code> and <code>composer.json</code>.</li>
-<li>Create a tag and push this tag with the command <code>git push --tags</code>, the extension is uploaded to TER with a generic message that points to the log on Github. Very convenient!</li>
-</ul>
+<p>Unfortunately, this is not final solutio because <code>strftime</code> has limitations and does not work properly with a time prior to 1970.</p>
 
-<h3>A few screenshots</h3>
+<p>Finally, the safest approach is to use a PHP extension "<a href="http://php.net/intl">Intl</a>" which is specialized in this task. A quick example:</p>
 
-<p><img src="/images/2015-02-20/2015-02-20_2202.png" alt="" /></p>
+<pre><code>$date = new \DateTime();
 
-<p>The setup of the Webhook</p>
+$formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::SHORT, IntlDateFormatter::SHORT);
+$formatter-&gt;setPattern('E d.M.Y');
 
-<hr />
+print $formatter-&gt;format($date); // ven. 20.3.2015
+</code></pre>
 
-<p><img src="/images/2015-02-20/2015-02-20_2203.png" alt="" /></p>
+<p>QED!</p>
 
-<p>Analysis of paylod to verify what has been sent to Webhook.</p>
-
-<hr />
-
-<p><img src="/images/2015-02-20/2015-02-20_2204.png" alt="" /></p>
-
-<p>The return of the Webhook actually corresponding to the message sent by the TER.</p>
-
-<p>This article is <a href="/fr/blog/2015/02/20/automatic-ter-release">available</a> in French also.</p>
+<p>This article is <a href="/fr/blog/2015/03/17/format-date-in-php/">available</a> in French also.</p>
 
         </div>
                             <p class="tags">
             Tags:
-                        <a href="/en/blog/tags/ter">ter</a>,                         <a href="/en/blog/tags/github">github</a>                        </p>
+                        <a href="/en/blog/tags/php">php</a>,                         <a href="/en/blog/tags/date">date</a>                        </p>
         
                     <nav class="article">
                 <ul>
-                                            <li>Next: <a class="next" href="/en/blog/2015/03/17/format-date-in-php/" title="Date format in PHP"><span class="title">Date format in PHP</span></a></li>
-                                                                <li>Previous: <a class="previous" href="/en/blog/2015/02/10/github-migration/" title="Moving my extensions to Github"><span class="title">Moving my extensions to Github</span></a></li>
+                                                                <li>Previous: <a class="previous" href="/en/blog/2015/02/20/automatic-ter-release/" title="Automatic TER release from Github"><span class="title">Automatic TER release from Github</span></a></li>
                                     </ul>
             </nav>
             </article>

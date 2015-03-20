@@ -45,6 +45,55 @@
                 <div class="span8">
                         <article>
         <header>
+            <h2><a href="/fr/blog/2015/01/03/media-tool/">Media extension - identifier les fichiers doublons!</a></h2>
+        </header>
+        <div>
+            <p>Je développe déjà depuis quelques temps une <a href="https://forge.typo3.org/projects/extension-media/">extension</a> pour la gestion des média pour <a href="http://demo.typo3.org/">TYPO3 CMS</a> avec comme point fort l'ergonomie et le traitement avancés des metadata.</p>
+
+<p>Je viens d'ajouter un nouvel outil qui permet la détection de fichiers doublons. Cela permet par exemple d'identifier un même fichier qui aurait été uploadé par inadvertance plusieurs fois par un utilisateur et qui serait à double dans le storage. L'outils produit une liste qui affiche ces doublons, ensuite, il est possible de sélectionner les fichiers qui sont à supprimer.</p>
+
+<p>Cet ajout vient compléter la liste des outils existants. Il y avait la possibilité déjà de repérer les fichiers manquants ou des enregistrements à double dans la base de donné.</p>
+
+<h3>En images</h3>
+
+<p>Ouverture du paneau des outils:</p>
+
+<p><img src="/images/2015-01-03/2015-01-03_1025.png" alt="" /></p>
+
+<p>Sélection de l'outil:</p>
+
+<p><img src="/images/2015-01-03/2015-01-03_1030.png" alt="" /></p>
+
+<p>Sélection des doublons:</p>
+
+<p><img src="/images/2015-01-03/2015-01-03_1031.png" alt="" /></p>
+
+<h3>Installation</h3>
+
+<p>Pour tester cette fonctionnalité, il faut récupérer les sources depuis le <a href="https://git.typo3.org/TYPO3CMS/Extensions/media.git">dépôt Git</a>, en attendant sa publication sur le <a href="http://typo3.org/extensions/repository/">TER</a>, ainsi que mettre à jour de l'extension <a href="https://forge.typo3.org/projects/extension-vidi/">Vidi</a> qui est le moteur sous-jacent à Media.</p>
+
+<pre><code># Clone du master de Vidi
+cd typo3conf/ext
+git clone git://git.typo3.org/TYPO3CMS/Extensions/vidi.git
+
+# Clone du master de Media
+cd typo3conf/ext
+git clone git://git.typo3.org/TYPO3CMS/Extensions/media.git
+</code></pre>
+
+<h3>Sponsor</h3>
+
+<p>Cette fonctionnalité a été sponsorisé par <a href="http://www.visol.ch/">Visol</a> que je remercie chaleureusement.</p>
+
+<p>Cet article <a href="/fr/blog/2015/01/03/media-tool">est disponible</a> en anglais également.</p>
+
+        </div>
+                    <p class="tags">
+            Tags:
+                        <a href="/fr/blog/tags/media">media</a>,                         <a href="/fr/blog/tags/typo3%20cms">typo3 cms</a>                        </p>
+            </article>
+    <article>
+        <header>
             <h2><a href="/fr/blog/2014/10/02/fabarea/">Fab Area!</a></h2>
         </header>
         <div>

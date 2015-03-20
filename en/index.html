@@ -45,6 +45,54 @@
                 <div class="span8">
                         <article>
         <header>
+            <h2><a href="/en/blog/2015/03/17/format-date-in-php/">Date format in PHP</a></h2>
+        </header>
+        <div>
+            <p>Formatting dates in PHP is one of those things that is more twisted / complicated than it looks. The case is simple, we want to display a date, taking into account the linguistic context. Let us first look the <code>\DateTime ()</code></p>
+
+<pre><code>$date = new \DateTime();
+print $date-&gt;format("d F Y"); // 20 Mar.2015
+</code></pre>
+
+<p>Mmm ... It works but unfortunately for us, the return of <code>format</code> method is in English only.</p>
+
+<p>To translate a date, use the <code>strftime</code> function which will used the Locales of the system under the hood. However, the formatting syntax is different since it has percent "%" as symbol and different letters.</p>
+
+<pre><code>setlocale(LC_TIME, "fr_FR");
+print strftime("%A %B %G"); // Vendredi mars 2015
+</code></pre>
+
+<p>By combining the object approach and the <code>strftime</code> function, this provides a more elegant solution.</p>
+
+<pre><code>setlocale(LC_TIME, "fr_FR");
+$date = new \DateTime();
+print strftime("%A %B %G", $date-&gt;getTimestamp());
+// Vendredi mars 2015
+</code></pre>
+
+<p>Unfortunately, this is not final solutio because <code>strftime</code> has limitations and does not work properly with a time prior to 1970.</p>
+
+<p>Finally, the safest approach is to use a PHP extension "<a href="http://php.net/intl">Intl</a>" which is specialized in this task. A quick example:</p>
+
+<pre><code>$date = new \DateTime();
+
+$formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::SHORT, IntlDateFormatter::SHORT);
+$formatter-&gt;setPattern('E d.M.Y');
+
+print $formatter-&gt;format($date); // ven. 20.3.2015
+</code></pre>
+
+<p>QED!</p>
+
+<p>This article is <a href="/fr/blog/2015/03/17/format-date-in-php/">available</a> in French also.</p>
+
+        </div>
+                    <p class="tags">
+            Tags:
+                        <a href="/en/blog/tags/php">php</a>,                         <a href="/en/blog/tags/date">date</a>                        </p>
+            </article>
+    <article>
+        <header>
             <h2><a href="/en/blog/2015/02/20/automatic-ter-release/">Automatic TER release from Github</a></h2>
         </header>
         <div>
@@ -128,34 +176,6 @@
                     <p class="tags">
             Tags:
                         <a href="/en/blog/tags/github">github</a>                        </p>
-            </article>
-    <article>
-        <header>
-            <h2><a href="/en/blog/2015/01/03/media-tool/">Using the migration file</a></h2>
-        </header>
-        <div>
-            <p>Today I decided to migrate the namespace of this extension</p>
-
-<p>This is quite simple actually.</p>
-
-<p>Welcome to my blog which looks more as an experiment for the moment.</p>
-
-<p>What is going to be here? Mainly technical stuff related to my on-going projects.</p>
-
-<p>I work in my daily work with products from the <a href="http://typo3.org/">TYPO3</a> ecosystem mainly with <a href="http://composer.typo3.org/">CMS</a> but not only!
-I am maintaining a couple of extensions there.</p>
-
-<p>This blog is powered by <a href="https://sculpin.io/">Sculpin</a>, a flexible site generator. I stumbled upon Sculpin while looking around for different site generator system.
-Sculpin is written in PHP and has a nice architecture on the top of <a href="http://symfony.com/">Symfony</a>.
-This kind of product looks quite appealing for economic, small-size website. Once the site is generated there
-is no maintenance required anymore. As a bonus, it can be freely hosted on various places!</p>
-
-<p>For a quick start I have been using <a href="https://github.com/sculpin/sculpin-blog-skeleton.git">this repository</a> which provides a straightforward structure to start bloging with Scuplin.</p>
-
-        </div>
-                    <p class="tags">
-            Tags:
-                        <a href="/en/blog/tags/typo3">typo3</a>                        </p>
             </article>
     <nav>
         <br />
