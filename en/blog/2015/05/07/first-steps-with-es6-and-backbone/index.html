@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Date format in PHP &mdash; &lt;fabarea/&gt; &mdash; To Get You Started</title>
+        <title>First steps with ES6 and Backbone &mdash; &lt;fabarea/&gt; &mdash; To Get You Started</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="/en/components/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -45,56 +45,49 @@
                 <div class="span8">
                         <article>
         <header>
-            <h2>Date format in PHP <small>post</small></h2>
+            <h2>First steps with ES6 and Backbone <small>post</small></h2>
         </header>
         <div>
-            <p>Formatting dates in PHP is one of those things that is more twisted / complicated than it looks. The case is simple, we want to display a date, taking into account the linguistic context. Let us first look the <code>\DateTime ()</code></p>
+            <p><strong>TL;TR Feedback on a mini-application based on ES6 and Backbone in promise land!</strong></p>
 
-<pre><code>$date = new \DateTime();
-print $date-&gt;format("d F Y"); // 20 Mar.2015
-</code></pre>
+<p>Here is a small feedback on a development that I made recently in JavaScript and I'm <strong>pretty</strong> happy to the extend I would like to talk about it.</p>
 
-<p>Mmm ... It works but unfortunately for us, the return of <code>format</code> method is in English only.</p>
+<p>As a quick background, the Customer asked for a mini-applications that has to be plugged onto an existing website. The application basically had to displayed a questionnaire interactively filled out by the User question by question.</p>
 
-<p>To translate a date, use the <code>strftime</code> function which will used the Locales of the system under the hood. However, the formatting syntax is different since it has percent "%" as symbol and different letters.</p>
+<p>At first, I embarked in <a href="https://github.com/lukehoban/es6features">ES6</a>, the successor of ES5 which is the JavaScript we know / write today. This next iteration of the language allows to better organize the code with classes, templates, modules, etc .. In short all that we love and what professionalize the application.</p>
 
-<pre><code>setlocale(LC_TIME, "fr_FR");
-print strftime("%A %B %G"); // Vendredi mars 2015
-</code></pre>
+<p>Since all browsers do not support ES6, the code is passed through a <code>transpiler</code>. Eventually the ES5 version is served to the browser which makes it <strong>perfectly compatible</strong>. As browser vendors move forward in ES6 support, compatibility layer will be reduced until it can be fully removed. A famous <code>transpiler</code> gaining a lot of attraction at the moment is <a href="http://babeljs.io/">Babel</a> which was formerly known as <code>6to5</code>. To make transpilation on the fly, I use <a href="http://gruntjs.com/">Grunt</a> that works well for my needs. I was inspired by <a href="https://github.com/Couto/babel-runners-example">the project</a> demonstrating this process with a variety of other tools, <a href="http://gulpjs.com/">Gulp</a> for example.</p>
 
-<p>By combining the object approach and the <code>strftime</code> function, this provides a more elegant solution.</p>
+<p>Meanwhile, I wanted to build the application upon the driven event approach. As example, when the user clicks a button, an event is fired. The adequate listener is responsible to react and triggers actions. This approach has the advantage of decoupling the application. Digging a little, I came across <a href="https://github.com/addyosmani/todomvc-backbone-es6">the project</a> which was a great <strong>source of inspiration</strong>. It illustrates the famous Todo example using ES6 and Backbone. Backbone is a JS library that provides a view-model supported by an event dispatching system. Exactly what I was looking for ... This allows to write high level code not to compare with jQuery where we have to think at the level of the DOM with all side effects it has. For a brief overview here is the <a href="https://github.com/addyosmani/todomvc-backbone-es6/blob/gh-pages/js/todo-app.js">annotated version</a>.</p>
 
-<pre><code>setlocale(LC_TIME, "fr_FR");
-$date = new \DateTime();
-print strftime("%A %B %G", $date-&gt;getTimestamp());
-// Vendredi mars 2015
-</code></pre>
+<p>In summary, the pros:</p>
 
-<p>Unfortunately, this is not final solutio because <code>strftime</code> has limitations and does not work properly with a time prior to 1970.</p>
+<ul>
+<li><strong>Light and fast</strong>: the code is less than 80K all included, my code + libraries</li>
+<li><strong>Pluggable</strong>: it can be loaded on a existing / running web site (no radical architecture design)</li>
+<li><strong>Maintainable</strong>: ES6 drastically reduces the "boilerplate" code.</li>
+</ul>
 
-<p>Finally, the safest approach is to use a PHP extension "<a href="http://php.net/intl">Intl</a>" which is specialized in this task. A quick example:</p>
+<p>In less:</p>
 
-<pre><code>$date = new \DateTime();
+<ul>
+<li><strong>Transpiler</strong>: even if fast, it adds a layer and not all is "transpilable" to ES5 - although the large majority is covered.</li>
+</ul>
 
-$formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::SHORT, IntlDateFormatter::SHORT);
-$formatter-&gt;setPattern('E d.M.Y');
+<p>I also keep an eye on the project <a href="http://aurelia.io/">Aurelia</a>. The approach goes further and requires to dive into a framework, but with the promise to stick to the ES6 and ES7 standards.</p>
 
-print $formatter-&gt;format($date); // ven. 20.3.2015
-</code></pre>
+<p>My humble <a href="[https://github.com/visol/ext-easyvote_smartvote/tree/master/Resources/Public/JavaScript/App](https://github.com/visol/ext-easyvote_smartvote/tree/master/Resources/Public/JavaScript/App)">version</a> of the code - still in development<br/></p>
 
-<p>QED!</p>
-
-<p>This article is <a href="/fr/blog/2015/03/17/format-date-in-php/">available</a> in French also.</p>
+<p>This article is <a href="/fr/blog/2015/05/07/first-steps-with-es6-and-backbone/">available</a> in French also.</p>
 
         </div>
                             <p class="tags">
             Tags:
-                        <a href="/en/blog/tags/php">php</a>,                         <a href="/en/blog/tags/date">date</a>                        </p>
+                        <a href="/en/blog/tags/javascript">javascript</a>,                         <a href="/en/blog/tags/es6">es6</a>,                         <a href="/en/blog/tags/babel">babel</a>,                         <a href="/en/blog/tags/grunt">grunt</a>,                         <a href="/en/blog/tags/backbone">backbone</a>                        </p>
         
                     <nav class="article">
                 <ul>
-                                            <li>Next: <a class="next" href="/en/blog/2015/05/07/first-steps-with-es6-and-backbone/" title="First steps with ES6 and Backbone"><span class="title">First steps with ES6 and Backbone</span></a></li>
-                                                                <li>Previous: <a class="previous" href="/en/blog/2015/02/20/automatic-ter-release/" title="Automatic TER release from Github"><span class="title">Automatic TER release from Github</span></a></li>
+                                                                <li>Previous: <a class="previous" href="/en/blog/2015/03/17/format-date-in-php/" title="Date format in PHP"><span class="title">Date format in PHP</span></a></li>
                                     </ul>
             </nav>
             </article>

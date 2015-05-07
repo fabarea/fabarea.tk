@@ -45,6 +45,48 @@
                 <div class="span8">
                         <article>
         <header>
+            <h2><a href="/en/blog/2015/05/07/first-steps-with-es6-and-backbone/">First steps with ES6 and Backbone</a></h2>
+        </header>
+        <div>
+            <p><strong>TL;TR Feedback on a mini-application based on ES6 and Backbone in promise land!</strong></p>
+
+<p>Here is a small feedback on a development that I made recently in JavaScript and I'm <strong>pretty</strong> happy to the extend I would like to talk about it.</p>
+
+<p>As a quick background, the Customer asked for a mini-applications that has to be plugged onto an existing website. The application basically had to displayed a questionnaire interactively filled out by the User question by question.</p>
+
+<p>At first, I embarked in <a href="https://github.com/lukehoban/es6features">ES6</a>, the successor of ES5 which is the JavaScript we know / write today. This next iteration of the language allows to better organize the code with classes, templates, modules, etc .. In short all that we love and what professionalize the application.</p>
+
+<p>Since all browsers do not support ES6, the code is passed through a <code>transpiler</code>. Eventually the ES5 version is served to the browser which makes it <strong>perfectly compatible</strong>. As browser vendors move forward in ES6 support, compatibility layer will be reduced until it can be fully removed. A famous <code>transpiler</code> gaining a lot of attraction at the moment is <a href="http://babeljs.io/">Babel</a> which was formerly known as <code>6to5</code>. To make transpilation on the fly, I use <a href="http://gruntjs.com/">Grunt</a> that works well for my needs. I was inspired by <a href="https://github.com/Couto/babel-runners-example">the project</a> demonstrating this process with a variety of other tools, <a href="http://gulpjs.com/">Gulp</a> for example.</p>
+
+<p>Meanwhile, I wanted to build the application upon the driven event approach. As example, when the user clicks a button, an event is fired. The adequate listener is responsible to react and triggers actions. This approach has the advantage of decoupling the application. Digging a little, I came across <a href="https://github.com/addyosmani/todomvc-backbone-es6">the project</a> which was a great <strong>source of inspiration</strong>. It illustrates the famous Todo example using ES6 and Backbone. Backbone is a JS library that provides a view-model supported by an event dispatching system. Exactly what I was looking for ... This allows to write high level code not to compare with jQuery where we have to think at the level of the DOM with all side effects it has. For a brief overview here is the <a href="https://github.com/addyosmani/todomvc-backbone-es6/blob/gh-pages/js/todo-app.js">annotated version</a>.</p>
+
+<p>In summary, the pros:</p>
+
+<ul>
+<li><strong>Light and fast</strong>: the code is less than 80K all included, my code + libraries</li>
+<li><strong>Pluggable</strong>: it can be loaded on a existing / running web site (no radical architecture design)</li>
+<li><strong>Maintainable</strong>: ES6 drastically reduces the "boilerplate" code.</li>
+</ul>
+
+<p>In less:</p>
+
+<ul>
+<li><strong>Transpiler</strong>: even if fast, it adds a layer and not all is "transpilable" to ES5 - although the large majority is covered.</li>
+</ul>
+
+<p>I also keep an eye on the project <a href="http://aurelia.io/">Aurelia</a>. The approach goes further and requires to dive into a framework, but with the promise to stick to the ES6 and ES7 standards.</p>
+
+<p>My humble <a href="[https://github.com/visol/ext-easyvote_smartvote/tree/master/Resources/Public/JavaScript/App](https://github.com/visol/ext-easyvote_smartvote/tree/master/Resources/Public/JavaScript/App)">version</a> of the code - still in development<br/></p>
+
+<p>This article is <a href="/fr/blog/2015/05/07/first-steps-with-es6-and-backbone/">available</a> in French also.</p>
+
+        </div>
+                    <p class="tags">
+            Tags:
+                        <a href="/en/blog/tags/javascript">javascript</a>,                         <a href="/en/blog/tags/es6">es6</a>,                         <a href="/en/blog/tags/babel">babel</a>,                         <a href="/en/blog/tags/grunt">grunt</a>,                         <a href="/en/blog/tags/backbone">backbone</a>                        </p>
+            </article>
+    <article>
+        <header>
             <h2><a href="/en/blog/2015/03/17/format-date-in-php/">Date format in PHP</a></h2>
         </header>
         <div>
@@ -147,35 +189,6 @@ print $formatter-&gt;format($date); // ven. 20.3.2015
                     <p class="tags">
             Tags:
                         <a href="/en/blog/tags/ter">ter</a>,                         <a href="/en/blog/tags/github">github</a>                        </p>
-            </article>
-    <article>
-        <header>
-            <h2><a href="/en/blog/2015/02/10/github-migration/">Moving my extensions to Github</a></h2>
-        </header>
-        <div>
-            <p>The <a href="https://forge.typo3.org/">TYPO3 Forge</a> is an interesting place that groups together a set of extensions and web resources. Unfortunately, the platform has negotiated the transition to Git with delay and many projects have moved to Github , Bitbucket and others. Added to this, the difficulty of <a href="https://code.google.com/p/gerrit/">Gerrit</a> which is a tool pretty tricky to get started with.</p>
-
-<p>To facilitate contributions on my projects, I decided to move my extensions to Github for pragmatic reasons.</p>
-
-<ul>
-<li><a href="https://github.com/fabarea/context_hints">context_hints</a></li>
-<li><a href="https://github.com/fabarea/media">media</a></li>
-<li><a href="https://github.com/fabarea/vidi">vidi</a></li>
-<li><a href="https://github.com/fabarea/vidi_starter">vidi_starter</a></li>
-<li><a href="https://github.com/fabarea/vidi_frontend">vidi_frontend</a></li>
-<li><a href="https://github.com/fabarea/quick_form">quick_form</a></li>
-<li><a href="https://github.com/fabarea/messenger">messenger</a></li>
-<li><a href="https://github.com/fabarea/rss_display">rss_display</a></li>
-<li><a href="https://github.com/fabarea/metadata">metadata</a></li>
-<li><a href="https://github.com/fabarea/media_upload">media_upload</a></li>
-</ul>
-
-<p>This article <a href="/fr/blog/2015/02/10/github-migration">is available</a> in French as well.</p>
-
-        </div>
-                    <p class="tags">
-            Tags:
-                        <a href="/en/blog/tags/github">github</a>                        </p>
             </article>
     <nav>
         <br />

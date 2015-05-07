@@ -3,9 +3,48 @@
     <title><![CDATA[&lt;fabarea/&gt;]]></title>
     <link href="/fr/atom.xml" rel="self"/>
     <link href="/fr/"/>
-    <updated>2015-03-20T22:13:50+01:00</updated>
+    <updated>2015-05-07T12:55:48+02:00</updated>
     <id>/fr/</id>
         <generator uri="http://sculpin.io/">Sculpin</generator>
+            <entry>
+            <title type="html"><![CDATA[Premier pas avec ES6 et Backbone]]></title>
+            <link href="/fr/blog/2015/05/07/first-steps-with-es6-and-backbone/"/>
+            <updated>2015-05-07T00:00:00+02:00</updated>
+            <id>/fr/blog/2015/05/07/first-steps-with-es6-and-backbone/</id>
+            <content type="html"><![CDATA[<p><strong>TL;TR retour d'expérience sur un mini-application basée sur ES6 et Backbone en terre promise!</strong></p>
+
+<p>Un petit retour sur un développement que j'ai fait dernièrement en JavaScript et dont je suis <strong>assez</strong> satisfait au point que j'aimerais en parler.</p>
+
+<p>La demande du client allait dans le sens d'une mini applications qui devait se greffer sur un site existant et qui présentait un questionnaire, rempli interactivement question après question par l'utilisateur.</p>
+
+<p>Dans un premier temps, je me suis embarquée dans <a href="https://github.com/lukehoban/es6features">ES6</a>, le successeur de ES5 qui est le JavaScript tel que nous connaissons / écrivons. Cela permet de mieux organiser son code avec des classes, des templates, des modules, etc.. Bref tout ce que nous aimons et qui professionnalise l'application.</p>
+
+<p>Comme tous les navigateurs ne supportent pas ES6, le code est passé à la moulinette via un <code>transpiler</code> et puis <strong>servit en version ES5 au navigateur</strong> qui le rend ainsi parfaitement compatible. À mesure que les navigateurs progresserons dans le support de ES6, la couche de compatibilité se verra réduite jusqu'à disparaître. Un des <code>transpiler</code> phare du moment est <a href="http://babeljs.io/">Babel</a> qui était anciennement connu sous le nom de <code>6to5</code>. Pour faire de la transpilation à la volée, j'utilise <a href="http://gruntjs.com/">Grunt</a> que je maîtrise et qui fonctionne bien pour mes besoins. Je me suis inspiré de <a href="https://github.com/Couto/babel-runners-example">ce projet</a> qui démontre ce processus avec une variété d'autres outils, <a href="http://gulpjs.com/">Gulp</a> par exemple.</p>
+
+<p>Parallèlement, je voulais appuyer ma min-application sur un système d'événement JavaScript. Lorsque l'utilisateur clique sur un bouton par exemple, un événement est émis. Les bons écouteurs se chargent de réagir et déclenche des actions. Cette approche à l'avantage de découpler l'application. En fouillant un peu, je suis tombé sur <a href="https://github.com/addyosmani/todomvc-backbone-es6">ce projet</a> qui a été une grande <strong>source d'inspiration</strong> et qui montrent l'écriture du fameux Todo en ES6 et Backbone. Backbone est une librairie JS qui fournit une Vue-Modèle couplé à un système de dispatching d'événement. Ce que je cherchais... Cela permet d'écrire du code du plus haut niveau que, pour comparer, avec jQuery où on raisonne en terme de DOM avec les effets de bord qui vont avec. Pour un bref aperçu voici la <a href="https://github.com/addyosmani/todomvc-backbone-es6/blob/gh-pages/js/todo-app.js">version commentée</a>.</p>
+
+<p>En résumé, dans les plus:</p>
+
+<ul>
+<li><strong>légerté</strong>: le code fait moins de 80K tout compris, mon code + les librairies, bas de gros bateaux à charger pour le navigateur (mobile).</li>
+<li><strong>pluggable</strong>: le code s'intègre comme une mini-application sur un site existant</li>
+<li><strong>maintenable</strong>: ES6 réduit drastiquement le code "boilerplate".</li>
+</ul>
+
+<p>Dans les moins:</p>
+
+<ul>
+<li><strong>transpiler</strong>: même si rapide, cela ajoute une couche et tout n'est pas "transilable" mais si une grande majorité est couvert.</li>
+</ul>
+
+<p>Je guette aussi le projet <a href="http://aurelia.io/">Aurelia</a>. L'approche va plus loin et demande d'entrer dans un framework, donc plus "radical" bien qui très proche du standard ES6 et ES7 dans sa philosophie.</p>
+
+<p>Ma version du code, très humblement:<br/>
+<a href="https://github.com/visol/ext-easyvote_smartvote/tree/master/Resources/Public/JavaScript/App">https://github.com/visol/ext-easyvote_smartvote/tree/master/Resources/Public/JavaScript/App</a></p>
+
+<p>This article is <a href="/en/blog/2015/05/07/first-steps-with-es6-and-backbone/">available</a> in English also.</p>
+]]></content>
+        </entry>
             <entry>
             <title type="html"><![CDATA[Formatter une date en PHP]]></title>
             <link href="/fr/blog/2015/03/17/format-date-in-php/"/>
